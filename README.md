@@ -34,6 +34,19 @@ Simple on purpose. It hides exactly the problems an architect cares about.
    git switch -c module-08 m08-start
    ```
 
+## Check your environment
+
+Lesson 0.3 installs the tools. Then, from the folder where your projects live:
+
+```bash
+curl -fsSLO https://raw.githubusercontent.com/AISAC-Cloud/slotwise/main/check-env.sh
+chmod +x check-env.sh
+./check-env.sh
+```
+
+[`check-env.sh`](check-env.sh) only reads; it changes nothing, and it is short enough to read before you run
+it. Every line should say `OK`. It does not check logins: GitHub and Claude Code logins are yours to do.
+
 ## Module 0 deliverable
 
 Fill in [`docs/domain.md`](docs/domain.md) in your own words: the four bounded contexts and at least three
