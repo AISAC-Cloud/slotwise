@@ -23,7 +23,7 @@ export function freeSlots(
   const gap = bufferMinutes * MS_PER_MINUTE;
   const end = day.end.getTime();
   const slots: TimeInterval[] = [];
-  for (let start = day.start.getTime(); start + step < end; start += step + gap) {
+  for (let start = day.start.getTime(); start + step <= end; start += step + gap) {
     const slot = { start: new Date(start), end: new Date(start + step) };
     if (!bookings.some((booking) => intervalsOverlap(slot, booking))) {
       slots.push(slot);

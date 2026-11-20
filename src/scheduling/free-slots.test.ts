@@ -24,6 +24,12 @@ describe('freeSlots', () => {
     expect(starts(freeSlots(interval('09:00', '10:15'), 30, bookings))).toEqual(['09:30']);
   });
 
+  it('offers a last slot that ends exactly when the day ends', () => {
+    const slots = starts(freeSlots(interval('09:00', '19:00'), 40, []));
+    expect(slots).toHaveLength(15);
+    expect(slots.at(-1)).toBe('18:20');
+  });
+
   it('rejects a service length that is not a positive whole number of minutes', () => {
     expect(() => freeSlots(interval('09:00', '10:00'), 0, [])).toThrow(RangeError);
     expect(() => freeSlots(interval('09:00', '10:00'), 12.5, [])).toThrow(RangeError);
