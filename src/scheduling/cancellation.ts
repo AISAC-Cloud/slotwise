@@ -1,6 +1,4 @@
-import { assertValidInterval, type TimeInterval } from './overlap.js';
-
-const MS_PER_HOUR = 3_600_000;
+import { assertValidInterval, MS_PER_HOUR, type TimeInterval } from './interval.js';
 
 /**
  * A customer cancels free of charge until `windowHours` before the booking starts.
