@@ -1,9 +1,26 @@
-import type { TimeInterval } from './overlap.js';
+import { assertValidInterval, type TimeInterval } from './overlap.js';
 
 const MS_PER_HOUR = 3_600_000;
 
-/** A customer cancels free of charge until `windowHours` before the booking starts. */
-export function canCancelFreeOfCharge(booking: TimeInterval, windowHours: number): boolean {
-  const now = Date.now();
-  return booking.start.getTime() - now > windowHours * MS_PER_HOUR;
+/**
+ * A customer cancels free of charge until `windowHours` before the booking starts.
+ *
+ * Pure domain rule: no clock. The caller passes `now`.
+ * Throws a RangeError for an invalid booking interval, an invalid `now`, or a
+ * window that is not a finite, non-negative number of hours.
+ */
+export function canCancelFreeOfCharge(
+  booking: TimeInterval,
+  windowHours: number,
+  now: Date,
+): boolean {
+  assertValidInterval(booking);
+  if (!Number.isFinite(windowHours) || windowHours < 0) {
+    throw new RangeError(`Cancellation window must be a non-negative number of hours: ${windowHours}`);
+  }
+  const nowMs = now.getTime();
+  if (Number.isNaN(nowMs)) {
+    throw new RangeError('Current time is an invalid date');
+  }
+  return booking.start.getTime() - nowMs > windowHours * MS_PER_HOUR;
 }
