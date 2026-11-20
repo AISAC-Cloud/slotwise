@@ -32,4 +32,8 @@ describe('freeSlots', () => {
   it('rejects an invalid day', () => {
     expect(() => freeSlots(interval('10:00', '09:00'), 30, [])).toThrow(RangeError);
   });
+
+  it('leaves the buffer between two slots', () => {
+    expect(starts(freeSlots(interval('09:00', '10:45'), 30, [], 10))).toEqual(['09:00', '09:40']);
+  });
 });
