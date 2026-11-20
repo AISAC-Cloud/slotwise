@@ -1,6 +1,4 @@
-import { type TimeInterval, assertValidInterval, intervalsOverlap } from './overlap.js';
-
-const MS_PER_MINUTE = 60_000;
+import { assertValidInterval, intervalsOverlap, MS_PER_MINUTE, type TimeInterval } from './interval.js';
 
 /**
  * The free slots of one staff member's day: back-to-back slots of the service's

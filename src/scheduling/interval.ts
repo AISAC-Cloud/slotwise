@@ -4,6 +4,9 @@
  * Intervals are half-open [start, end). Pure: no I/O, no clock.
  */
 
+export const MS_PER_MINUTE = 60_000;
+export const MS_PER_HOUR = 60 * MS_PER_MINUTE;
+
 export interface TimeInterval {
   readonly start: Date;
   /** Exclusive: the interval is [start, end). */
