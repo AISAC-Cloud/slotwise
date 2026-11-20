@@ -6,7 +6,7 @@
  * now; per-tenant time zones come later.
  */
 
-import { assertValidInterval, type TimeInterval } from './overlap.js';
+import { assertValidInterval, MS_PER_MINUTE, type TimeInterval } from './interval.js';
 
 /** 0 = Sunday … 6 = Saturday, as returned by Date#getUTCDay(). */
 export type Weekday = 0 | 1 | 2 | 3 | 4 | 5 | 6;
@@ -22,8 +22,6 @@ export interface DayHours {
 
 /** A missing weekday is a day off. */
 export type WorkingWeek = Readonly<Partial<Record<Weekday, DayHours>>>;
-
-const MS_PER_MINUTE = 60_000;
 
 /** Minutes since midnight for "HH:MM"; throws RangeError if malformed or out of range. */
 function minutesOfDay(time: TimeOfDay): number {
