@@ -1,0 +1,6 @@
+{
+  "name": "domain-rule-review",
+  "version": "0.1.0",
+  "description": "Reviews a change to a slotwise scheduling rule against the domain invariants.",
+  "author": { "name": "slotwise team" }
+}
